@@ -41,10 +41,10 @@
     max-width: 40vw;
   }
 
-  .buttons {
-    position: relative;
-    height: 120px;
-  }
+ .buttons {
+  position: static;
+}
+
 
   button {
     padding: 12px 26px;
@@ -98,11 +98,16 @@
     "Exam is scared of you!"
   ];
 
-  function moveNo() {
-    const btn = document.getElementById("noBtn");
+  const btn = document.getElementById("noBtn");
 
-    const maxX = window.innerWidth - btn.offsetWidth - 20;
-    const maxY = window.innerHeight - btn.offsetHeight - 20;
+  // make sure button is positioned relative to screen
+  btn.style.position = "fixed";
+
+  function moveNo() {
+    const padding = 20;
+
+    const maxX = window.innerWidth - btn.offsetWidth - padding;
+    const maxY = window.innerHeight - btn.offsetHeight - padding;
 
     const x = Math.random() * maxX;
     const y = Math.random() * maxY;
@@ -120,3 +125,4 @@
 
 </body>
 </html>
+
