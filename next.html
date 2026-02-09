@@ -5,6 +5,9 @@
 <title>You Got This</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Poppins Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
   body {
     margin: 0;
@@ -13,12 +16,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 
   .card {
     background: white;
-    padding: 30px;
+    padding: 28px;
     border-radius: 20px;
     max-width: 420px;
     text-align: center;
@@ -33,8 +36,16 @@
   p {
     color: #333;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.7;
     min-height: 200px;
+  }
+
+  .final-line {
+    margin-top: 15px;
+    font-weight: 500;
+    color: #ff4d6d;
+    opacity: 0;
+    transition: opacity 1s ease;
   }
 </style>
 </head>
@@ -43,6 +54,7 @@
   <div class="card">
     <img src="motivation-bear.png" alt="Motivational Bear">
     <p id="text"></p>
+    <div class="final-line" id="finalLine">Deep breath… you’re ready.</div>
   </div>
 
 <script>
@@ -54,11 +66,19 @@ Walk into the exam hall with confidence and give your honest best.
 I truly believe you’ll do well.`;
 
   let i = 0;
+  const speed = 22; // faster typing speed
+  const textEl = document.getElementById("text");
+  const finalLine = document.getElementById("finalLine");
+
   function typeText() {
     if (i < message.length) {
-      document.getElementById("text").innerHTML += message.charAt(i);
+      textEl.innerHTML += message.charAt(i);
       i++;
-      setTimeout(typeText, 35);
+      setTimeout(typeText, speed);
+    } else {
+      setTimeout(() => {
+        finalLine.style.opacity = 1;
+      }, 500);
     }
   }
 
