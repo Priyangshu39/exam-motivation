@@ -20,7 +20,7 @@
   .container {
     text-align: center;
     width: 100%;
-    position: relative;
+    pointer-events: auto;
   }
 
   h1 {
@@ -41,32 +41,31 @@
     max-width: 40vw;
   }
 
- .buttons {
-  position: static;
-}
-
-
-  button {
+  .yes {
     padding: 12px 26px;
     font-size: 16px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    white-space: nowrap;
-  }
-
-  .yes {
     background: white;
     color: black;
   }
 
-  .no {
+  /* NO BUTTON — IMPORTANT */
+  #noBtn {
+    padding: 12px 26px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
     background: #ff4d6d;
     color: white;
-    position: absolute;
+
+    position: fixed;      /* lock to screen */
+    z-index: 9999;        /* ALWAYS on top */
     left: 55%;
-    top: 0;
-    transition: all 0.15s ease;
+    top: 60%;
+    white-space: nowrap;
   }
 </style>
 </head>
@@ -80,10 +79,8 @@
       <img src="white-bear-cry.png" alt="White Bear Crying">
     </div>
 
-    <div class="buttons">
-      <button class="yes" onclick="goNext()">Yes</button>
-      <button class="no" id="noBtn" onclick="moveNo()">No</button>
-    </div>
+    <button class="yes" onclick="goNext()">Yes</button>
+    <button id="noBtn" onclick="moveNo()">No</button>
   </div>
 
 <script>
@@ -100,11 +97,8 @@
 
   const btn = document.getElementById("noBtn");
 
-  // make sure button is positioned relative to screen
-  btn.style.position = "fixed";
-
   function moveNo() {
-    const padding = 20;
+    const padding = 10;
 
     const maxX = window.innerWidth - btn.offsetWidth - padding;
     const maxY = window.innerHeight - btn.offsetHeight - padding;
@@ -125,4 +119,3 @@
 
 </body>
 </html>
-
