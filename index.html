@@ -19,8 +19,8 @@
 
   .container {
     text-align: center;
-    position: relative;
     width: 100%;
+    position: relative;
   }
 
   h1 {
@@ -43,15 +43,16 @@
 
   .buttons {
     position: relative;
-    height: 80px;
+    height: 120px;
   }
 
   button {
-    padding: 12px 28px;
-    font-size: 18px;
+    padding: 12px 26px;
+    font-size: 16px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
+    white-space: nowrap;
   }
 
   .yes {
@@ -65,13 +66,7 @@
     position: absolute;
     left: 55%;
     top: 0;
-  }
-
-  .message {
-    margin-top: 15px;
-    color: #ff4d6d;
-    font-size: 16px;
-    min-height: 22px;
+    transition: all 0.15s ease;
   }
 </style>
 </head>
@@ -89,22 +84,22 @@
       <button class="yes" onclick="goNext()">Yes</button>
       <button class="no" id="noBtn" onclick="moveNo()">No</button>
     </div>
-
-    <div class="message" id="msg"></div>
   </div>
 
 <script>
   const messages = [
     "Wrong button!",
-    "Can't catch up!",
-    "Nice try, but no!",
-    "Fear detected, confidence loading...",
-    "Exam is scared of you, not you of exam!"
+    "Nice try!",
+    "Can't catch me!",
+    "Still no!",
+    "Fear loading...",
+    "Confidence missing!",
+    "Try again!",
+    "Exam is scared of you!"
   ];
 
   function moveNo() {
     const btn = document.getElementById("noBtn");
-    const msg = document.getElementById("msg");
 
     const maxX = window.innerWidth - btn.offsetWidth - 20;
     const maxY = window.innerHeight - btn.offsetHeight - 20;
@@ -115,7 +110,7 @@
     btn.style.left = x + "px";
     btn.style.top = y + "px";
 
-    msg.innerText = messages[Math.floor(Math.random() * messages.length)];
+    btn.innerText = messages[Math.floor(Math.random() * messages.length)];
   }
 
   function goNext() {
@@ -125,5 +120,3 @@
 
 </body>
 </html>
-
-
