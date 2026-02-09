@@ -19,8 +19,6 @@
 
   .container {
     text-align: center;
-    width: 100%;
-    pointer-events: auto;
   }
 
   h1 {
@@ -51,7 +49,6 @@
     color: black;
   }
 
-  /* NO BUTTON — IMPORTANT */
   #noBtn {
     padding: 12px 26px;
     font-size: 16px;
@@ -61,11 +58,13 @@
     background: #ff4d6d;
     color: white;
 
-    position: fixed;      /* lock to screen */
-    z-index: 9999;        /* ALWAYS on top */
-    left: 55%;
+    position: absolute;
+    z-index: 1000;
+    left: 50%;
     top: 60%;
+    transform: translate(-50%, -50%);
     white-space: nowrap;
+    transition: all 0.2s ease;
   }
 </style>
 </head>
@@ -98,17 +97,19 @@
   const btn = document.getElementById("noBtn");
 
   function moveNo() {
-    const padding = 10;
+    const padding = 15;
 
+    // calculate max positions inside viewport
     const maxX = window.innerWidth - btn.offsetWidth - padding;
     const maxY = window.innerHeight - btn.offsetHeight - padding;
 
     const x = Math.random() * maxX;
     const y = Math.random() * maxY;
 
-    btn.style.left = x + "px";
-    btn.style.top = y + "px";
+    btn.style.left = `${x}px`;
+    btn.style.top = `${y}px`;
 
+    // change text inside the NO button
     btn.innerText = messages[Math.floor(Math.random() * messages.length)];
   }
 
