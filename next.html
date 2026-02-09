@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>You Got This</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: #ffd6dc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+
+  .card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+
+  .card img {
+    width: 100px;
+    margin-bottom: 15px;
+  }
+
+  p {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 200px;
+  }
+</style>
+</head>
+
+<body>
+  <div class="card">
+    <img src="white-bear-cry.png" alt="Bear Comforting">
+    <p id="text"></p>
+  </div>
+
+<script>
+  const message = `Pritha, as your HS exams begin, just remember how much effort and dedication you’ve already put in.
+It’s natural to feel pressure, but don’t let it make you doubt yourself.
+Trust your preparation, stay calm, and focus on one question at a time.
+This exam is an important step, but it does not define your worth or your future.
+Walk into the exam hall with confidence and give your honest best.
+I truly believe you’ll do well.`;
+
+  let i = 0;
+  function typeText() {
+    if (i < message.length) {
+      document.getElementById("text").innerHTML += message.charAt(i);
+      i++;
+      setTimeout(typeText, 35);
+    }
+  }
+
+  typeText();
+</script>
+
+</body>
+</html>
