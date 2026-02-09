@@ -5,68 +5,66 @@
 <title>You Got This</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Poppins Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
   body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
     background: #ffd6dc;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Quicksand', sans-serif;
   }
 
   .card {
     background: white;
-    padding: 28px;
+    padding: 22px;
     border-radius: 20px;
+    width: 90%;
     max-width: 420px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   }
 
-  .card img {
-    width: 120px;
-    margin-bottom: 15px;
+  img {
+    width: 110px;
+    margin-bottom: 12px;
   }
 
-  p {
-    color: #333;
-    font-size: 16px;
+  #text {
+    font-size: 15.5px;
     line-height: 1.7;
-    min-height: 200px;
+    min-height: 180px;
+    color: #333;
   }
 
-  .final-line {
-    margin-top: 15px;
+  #finalLine {
+    margin-top: 14px;
     font-weight: 500;
     color: #ff4d6d;
-    opacity: 0;
-    transition: opacity 1s ease;
+    display: none;
   }
 </style>
 </head>
 
 <body>
   <div class="card">
-    <img src="motivation-bear.png" alt="Motivational Bear">
-    <p id="text"></p>
-    <div class="final-line" id="finalLine">Deep breath… you’re ready.</div>
+    <img src="motivation-bear.png">
+    <div id="text"></div>
+    <div id="finalLine">Deep breath… you’re ready.</div>
   </div>
 
 <script>
-  const message = `Pritha, as your HS exams begin, just remember how much effort and dedication you’ve already put in.
-It’s natural to feel pressure, but don’t let it make you doubt yourself.
-Trust your preparation, stay calm, and focus on one question at a time.
-This exam is an important step, but it does not define your worth or your future.
-Walk into the exam hall with confidence and give your honest best.
-I truly believe you’ll do well.`;
+  const message =
+    "Pritha, you have already put in the effort and it shows. " +
+    "Feeling nervous is normal, but do not let it shake your confidence. " +
+    "Trust what you have studied and take the exam one question at a time. " +
+    "This exam does not define you, but your effort does. " +
+    "Walk in calmly and give your honest best.";
 
   let i = 0;
-  const speed = 22; // faster typing speed
+  const speed = 15; // faster typing
   const textEl = document.getElementById("text");
   const finalLine = document.getElementById("finalLine");
 
@@ -76,9 +74,7 @@ I truly believe you’ll do well.`;
       i++;
       setTimeout(typeText, speed);
     } else {
-      setTimeout(() => {
-        finalLine.style.opacity = 1;
-      }, 500);
+      finalLine.style.display = "block";
     }
   }
 
