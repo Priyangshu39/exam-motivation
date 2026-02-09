@@ -64,6 +64,8 @@
     top: 60%;
     transform: translate(-50%, -50%);
     white-space: nowrap;
+    max-width: 90vw;
+    text-align: center;
     transition: all 0.2s ease;
   }
 </style>
@@ -97,20 +99,21 @@
   const btn = document.getElementById("noBtn");
 
   function moveNo() {
-    const padding = 15;
+    const padding = 20;
 
-    // calculate max positions inside viewport
-    const maxX = window.innerWidth - btn.offsetWidth - padding;
-    const maxY = window.innerHeight - btn.offsetHeight - padding;
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
-    btn.style.left = `${x}px`;
-    btn.style.top = `${y}px`;
-
-    // change text inside the NO button
+    // change message first
     btn.innerText = messages[Math.floor(Math.random() * messages.length)];
+
+    requestAnimationFrame(() => {
+      const maxX = window.innerWidth - btn.offsetWidth - padding;
+      const maxY = window.innerHeight - btn.offsetHeight - padding;
+
+      const x = Math.random() * Math.max(maxX, padding);
+      const y = Math.random() * Math.max(maxY, padding);
+
+      btn.style.left = x + "px";
+      btn.style.top = y + "px";
+    });
   }
 
   function goNext() {
