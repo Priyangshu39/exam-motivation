@@ -16,77 +16,102 @@
     justify-content: center;
     align-items: center;
     font-family: 'Quicksand', sans-serif;
+    padding: 15px;
   }
 
   .card {
     background: white;
     padding: 22px;
     border-radius: 20px;
-    width: 90%;
+    width: 100%;
     max-width: 420px;
     text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
   }
 
   img {
     width: 110px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 
   #text {
     font-size: 15.5px;
-    line-height: 1.7;
-    min-height: 180px;
+    line-height: 1.75;
+    min-height: 190px;
     color: #333;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
   }
 
   #finalLine {
-    margin-top: 14px;
+    margin-top: 18px;
+    font-size: 17px;
     font-weight: 500;
     color: #ff4d6d;
     display: none;
+    animation: glow 1.8s ease-in-out infinite alternate;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 5px rgba(255,77,109,0.3); }
+    to { text-shadow: 0 0 12px rgba(255,77,109,0.6); }
   }
 </style>
 </head>
 
 <body>
   <div class="card">
-    <img src="motivation-bear.png">
+    <img src="motivation-bear.png" alt="Motivation Bear">
     <div id="text"></div>
-    <div id="finalLine">Deep breath… you’re ready.</div>
+    <div id="finalLine">
+      Deep breath…<br>
+      You’re ready. 💗
+    </div>
   </div>
 
 <script>
-  const message =
-    "Pritha, as your HS exams begin, remember how much effort you have already put in. " +
-    "It is natural to feel pressure, but do not let it make you doubt yourself. " +
-    "Trust your preparation and focus on one question at a time. " +
-    "This exam is an important step, but it does not define your worth or your future. " +
-    "Walk into the exam hall with confidence and give your honest best. " +
-    "I truly believe you will do well.";
+  const message = [
+    "Pritha, as your HS exams begin, remember how much effort you have already put in.",
+    "It is natural to feel pressure, but do not let it make you doubt yourself.",
+    "Trust your preparation and focus on one question at a time.",
+    "This exam is an important step, but it does not define your worth or your future.",
+    "Walk into the exam hall with confidence and give your honest best.",
+    "I truly believe you will do well."
+  ];
 
-  let i = 0;
-  const speed = 12; // faster typing
   const textEl = document.getElementById("text");
   const finalLine = document.getElementById("finalLine");
 
-  function typeText() {
-    if (i < message.length) {
-      textEl.innerHTML += message.charAt(i);
-      i++;
-      setTimeout(typeText, speed);
+  let line = 0;
+  let char = 0;
+  const speed = 14; // typing speed
+
+  function typeLine() {
+    if (line < message.length) {
+      if (char < message[line].length) {
+        textEl.innerHTML += message[line].charAt(char);
+        char++;
+        setTimeout(typeLine, speed);
+      } else {
+        textEl.innerHTML += "<br><br>";
+        line++;
+        char = 0;
+        setTimeout(typeLine, 450); // pause between lines
+      }
     } else {
-      finalLine.style.display = "block";
+      setTimeout(() => {
+        finalLine.style.display = "block";
+      }, 600);
     }
   }
 
-  typeText();
+  typeLine();
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
